@@ -5,7 +5,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import { mainRoutes } from './main';
 import { authRoutes } from './auth';
 import { dashboardRoutes } from './dashboard';
-import Home from 'src/components/customComponent/home/home';
+import Home from 'src/components/customComponent/home/Home';
 import Login from 'src/components/customComponent/Login';
 import RegisterComponent from 'src/components/customComponent/Register';
 import DashboardLayout from 'src/layouts/dashboard';
