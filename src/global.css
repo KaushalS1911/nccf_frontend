@@ -1,0 +1,33 @@
+/* scrollbar */
+@import 'simplebar-react/dist/simplebar.min.css';
+.button {
+    background-color: #28a745 !important;
+    color: white !important;
+    transition: .3s !important;
+}
+
+.button:hover {
+    background-color: #218838 !important;
+    color: white !important;
+}
+
+.aqua-back {
+    background-color: #1abc9c !important;
+    color: white !important;
+}
+
+.aqua-back:hover {
+    background-color: #1abc9c !important;
+    color: white !important;
+}
+.ak-login-devider {
+    position: absolute;
+    width: 7px;
+    height: 360px;
+    z-index: 2;
+    background: #fff;
+    box-shadow: 10px 7px 15px rgba(0, 0, 0, 0.4);
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
