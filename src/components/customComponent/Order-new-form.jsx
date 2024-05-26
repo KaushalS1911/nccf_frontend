@@ -23,7 +23,6 @@ export default function OrderNewForm() {
   useEffect(() => {
     setVendorCode(storedVendorCode || '');
   }, []);
-  console.log('ven', vendorCode);
 
   const defaultValues = useMemo(
     () => ({

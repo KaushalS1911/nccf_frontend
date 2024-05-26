@@ -14,7 +14,8 @@ export default function Page() {
 
       {/* <OrderNewForm /> */}
 
-      <FourView />
+      <h2>Dashboard</h2>
+      {/*<FourView />*/}
     </>
   );
 }

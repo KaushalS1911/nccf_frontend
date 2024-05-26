@@ -1,6 +1,6 @@
 // import * as Yup from 'yup';
 import PropTypes from 'prop-types';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup';
 import Box from '@mui/material/Box';
@@ -18,112 +18,76 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import FormProvider from '../../components/hook-form';
 import RHFTextField from '../../components/hook-form/rhf-text-field';
 import RHFAutocomplete from '../../components/hook-form/rhf-autocomplete';
-// import axios from 'axios';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 // ----------------------------------------------------------------------
-export default function UserNewEditForm({ currentUser }) {
-  // const { enqueueSnackbar } = useSnackbar();
-  // const NewUserSchema = Yup.object().shape({
-  //   name: Yup.string().required('Name is required'),
-  //   email: Yup.string().required('Email is required').email('Email must be a valid email address'),
-  //   phoneNumber: Yup.string().required('Phone number is required'),
-  //   address: Yup.string().required('Address is required'),
-  //   country: Yup.string().required('Country is required'),
-  //   company: Yup.string().required('Company is required'),
-  //   state: Yup.string().required('State is required'),
-  //   city: Yup.string().required('City is required'),
-  //   role: Yup.string().required('Role is required'),
-  //   zipCode: Yup.string().required('Zip code is required'),
-  //   avatarUrl: Yup.mixed().nullable().required('Avatar is required'),
-  //   status: Yup.string(),
-  //   isVerified: Yup.boolean(),
-  // });
+export default function UserNewEditForm({ vendorCode, vendorContact }) {
+  const [currentUser, setCurrentUser] = useState();
+  const notify = () => toast.success('User details updated successfully');
+  const notifyError = () => toast.error('Something went wrong');
+
+  useEffect(() => {
+    if(vendorContact){
+      axios.get(`http://ec2-54-173-125-80.compute-1.amazonaws.com:8080/nccf/csp_detail/${vendorContact}`).then((res) => {
+        setCurrentUser(res?.data);
+      }).catch((error) => console.log(error));
+    }
+  },[vendorContact]);
+
   const defaultValues = useMemo(
     () => ({
-      // name: currentUser?.name || '',
-      // city: currentUser?.city || '',
-      // role: currentUser?.role || '',
-      // email: currentUser?.email || '',
-      // state: currentUser?.state || '',
-      // status: currentUser?.status || '',
-      // address: currentUser?.address || '',
-      // country: currentUser?.country || '',
-      // zipCode: currentUser?.zipCode || '',
-      // company: currentUser?.company || '',
-      // avatarUrl: currentUser?.avatarUrl || null,
-      // phoneNumber: currentUser?.phoneNumber || '',
-      // isVerified: currentUser?.isVerified || true,
-      address: '',
-      commodity: '',
-      contact_person: '',
-      district: '',
-      gst_number: '',
-      milling_type: '',
-      name: '',
-      pan_number: '',
-      phone_number: '',
-      pincode: '',
-      quantity: '',
-      state: '',
+      address: currentUser?.address || '',
+      commodity: currentUser?.commodity || '',
+      contact_person: currentUser?.contact_person || '',
+      district: currentUser?.district || '',
+      gst_number:currentUser?.gst_number ||  '',
+      milling_type: currentUser?.milling_type || '',
+      name: currentUser?.name || '',
+      pan_number: currentUser?.pan_number || '',
+      phone_number: vendorContact,
+      pincode: currentUser?.pincode || '',
+      quantity:currentUser?.quantity ||  '',
+      state: currentUser?.state || '',
     }),
-    [currentUser]
+    []
   );
+
   const methods = useForm({
-    // resolver: yupResolver(NewUserSchema),
     defaultValues,
   });
-  const miilingType = ['Dry', 'Wet', 'Both'];
+
+  const milingType = ['Dry', 'Wet', 'Both'];
   const commodity = ['Rice', 'Wheat', 'Oats'];
   const {
-    // reset,
-    // watch,
-    // control,
     // setValue,
     handleSubmit,
     formState: { isSubmitting },
   } = methods;
   // const values = watch();
   const onSubmit = handleSubmit(async (data) => {
-    // const payload = {
-    //   ...data,
-    //   // vendor_category,
-    //   mode: 'test',
-    // };
-    // axios
-    //   .post(
-    //     'http://ec2-54-173-125-80.compute-1.amazonaws.com:8080/nccf/channel_sales_partner',
-    //     payload
-    //   )
-    //   .then((res) => {
-    //     alert('Registered Successfully...');
-    //     console.log('Registered Successfully...');
-    //   })
-    //   .catch((err) => console.log(err));
-    console.log(data);
-    // try {
-    //   await new Promise((resolve) => setTimeout(resolve, 500));
-    //   reset();
-    //   enqueueSnackbar(currentUser ? 'Update success!' : 'Create success!');
-    //   router.push(paths.dashboard.user.list);
-    //   console.info('DATA', data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    const payload = {
+      ...data,
+      vendor_code: vendorCode,
+      mode: 'test',
+    };
+    axios
+      .put(
+        'http://ec2-54-173-125-80.compute-1.amazonaws.com:8080/nccf/csp/update_info',
+        payload
+      )
+      .then((res) => {
+        console.log("Hello I am running",res)
+        notify()
+      })
+      .catch((err) =>
+      notifyError()
+      );
   });
-  // const handleDrop = useCallback(
-  //   (acceptedFiles) => {
-  //     const file = acceptedFiles[0];
-  //     const newFile = Object.assign(file, {
-  //       preview: URL.createObjectURL(file),
-  //     });
-  //     if (file) {
-  //       setValue('avatarUrl', newFile, { shouldValidate: true });
-  //     }
-  //   },
-  //   [setValue]
-  // );
+
   return (
     <>
       <FormProvider methods={methods} onSubmit={onSubmit}>
+        <ToastContainer/>
         <Grid container>
           <Grid item md={4}>
             <Box sx={{ ml: { md: '60px', xs: '0' }, mt: '60px' }}>
@@ -161,7 +125,7 @@ export default function UserNewEditForm({ currentUser }) {
                   label="Milling Type"
                   placeholder="Choose Milling Type"
                   fullWidth
-                  options={miilingType.map((option) => option)}
+                  options={milingType.map((option) => option)}
                   getOptionLabel={(option) => option}
                 />
                 <RHFAutocomplete
@@ -240,7 +204,7 @@ export default function UserNewEditForm({ currentUser }) {
         </Grid>
         <Stack alignItems="flex-end" sx={{ mt: 3 }}>
           <LoadingButton type="submit" className="button" loading={isSubmitting}>
-            {!currentUser ? 'Save' : 'Save Changes'}
+            Save
           </LoadingButton>
         </Stack>
       </FormProvider>

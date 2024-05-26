@@ -37,6 +37,7 @@ function Login() {
         if (response.data.status === '200') {
           notify();
           sessionStorage.setItem('vendor', response?.data?.data[0].vendor_code);
+          sessionStorage.setItem('phone_number', response?.data?.data[0].phone_number);
           navigate('/dashboard');
         } else {
           notifyError();
