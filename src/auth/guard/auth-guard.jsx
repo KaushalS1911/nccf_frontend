@@ -7,9 +7,10 @@ import { useRouter } from 'src/routes/hooks';
 import { SplashScreen } from 'src/components/loading-screen';
 
 import { useAuthContext } from '../hooks';
+import { Navigate, useNavigate } from 'react-router-dom';
+import Login from 'src/components/customComponent/login/Login';
 
 // ----------------------------------------------------------------------
-
 const loginPaths = {
   jwt: paths.auth.jwt.login,
 };
@@ -18,8 +19,11 @@ const loginPaths = {
 
 export default function AuthGuard({ children }) {
   // const { loading } = useAuthContext();
-
-  return <>{children}</>;
+  const router = useRouter();
+  const navigate = useNavigate();
+  const session = sessionStorage.getItem('vendor');
+  console.log(typeof session);
+  return <>{session ? children : <Navigate to={'/login'} />}</>;
 }
 
 AuthGuard.propTypes = {

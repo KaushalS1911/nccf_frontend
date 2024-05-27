@@ -23,11 +23,11 @@ import CustomPopover, { usePopover } from 'src/components/custom-popover';
 const OPTIONS = [
   {
     label: 'Profile',
-    linkTo: '/#1',
+    linkTo: '/dashboard',
   },
   {
     label: 'Settings',
-    linkTo: '/#2',
+    linkTo: '/dashboard',
   },
 ];
 
@@ -38,23 +38,23 @@ export default function AccountPopover() {
 
   const { user } = useMockedUser();
 
-  const { logout } = useAuthContext();
+  // const { logout } = useAuthContext();
 
   const popover = usePopover();
 
-  const handleLogout = async () => {
+  const handleLogout =  () => {
     try {
-      await logout();
       popover.onClose();
-      router.replace('/');
+      sessionStorage.removeItem("vendor")
+      router.push("/login");
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleClickItem = (path) => {
-    popover.onClose();
     router.push(path);
+    popover.onClose();
   };
 
   return (

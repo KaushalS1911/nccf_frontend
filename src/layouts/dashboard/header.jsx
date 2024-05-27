@@ -11,11 +11,8 @@ import Logo from 'src/components/logo';
 import SvgColor from 'src/components/svg-color';
 import { useSettingsContext } from 'src/components/settings';
 import { NAV, HEADER } from '../config-layout';
-import SettingsButton from '../common/settings-button';
+// import SettingsButton from '../common/settings-button';
 import AccountPopover from '../common/account-popover';
-import LanguagePopover from '../common/language-popover'; // Assuming this component exists
-import NotificationsPopover from '../common/notifications-popover'; // Assuming this component exists
-import ContactsPopover from '../common/contacts-popover'; // Assuming this component exists
 import img from '../../assets/images/header/Group1.png';
 import mobileLogo from '../../assets/images/header/logo1@4x.png';
 import { Button } from '@mui/material';
@@ -61,10 +58,7 @@ export default function Header({ onOpenNav }) {
         >
           Log Out
         </Button>
-        {mdDown ? '' : <LanguagePopover />}
-        {mdDown ? '' : <NotificationsPopover />}
-        {mdDown ? '' : <ContactsPopover />}
-        {mdDown ? '' : <SettingsButton />}
+        {/* {mdDown ? '' : <SettingsButton />} */}
         <AccountPopover />
       </Stack>
     </>

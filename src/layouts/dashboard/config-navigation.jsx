@@ -54,11 +54,12 @@ export function useNavData() {
         items: [
           { title: 'Dashboard', path: paths.dashboard.root, icon: ICONS.dashboard },
           { title: 'Basic Information', path: paths.dashboard.basicInfo, icon: ICONS.dashboard },
-          { title: 'Upload Document', path: paths.dashboard.two, icon: ICONS.ecommerce },
+          { title: 'Upload Document', path: paths.dashboard.uploadDocument, icon: ICONS.file },
+          { title: 'Upload Evidence', path: paths.dashboard.uploadEvidence, icon: ICONS.file },
           {
-            title: 'Order',
-            path: paths.dashboard.orderList,
-            icon: ICONS.analytics,
+            title: 'Place Order',
+            path: paths.dashboard.placeOrder,
+            icon: ICONS.ecommerce,
           },
         ],
       },

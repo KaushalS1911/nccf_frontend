@@ -6,10 +6,9 @@ import { mainRoutes } from './main';
 import { authRoutes } from './auth';
 import { dashboardRoutes } from './dashboard';
 import Home from 'src/components/customComponent/home/Home';
-import Login from 'src/components/customComponent/Login';
-import RegisterComponent from 'src/components/customComponent/Register';
+import Login from 'src/components/customComponent/login/Login';
+import RegisterComponent from 'src/components/customComponent/register/Register';
 import DashboardLayout from 'src/layouts/dashboard';
-// import OneView from 'src/sections/one/view';
 
 // ----------------------------------------------------------------------
 

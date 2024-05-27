@@ -2,7 +2,8 @@ import background from '../../../assets/images/loginbgnew.png';
 import user from '../../../assets/images/small.png';
 import { Box, Button, Container, Grid, Typography, Paper } from '@mui/material';
 import { useRouter } from 'src/routes/hooks';
-import NavbarHeader from '../Header';
+import NavbarHeader from '../header/Header';
+import { Helmet } from 'react-helmet-async';
 // ----------------------------------------------------------------------
 
 export default function Home() {
@@ -10,6 +11,9 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>NCCF csp portal</title>
+      </Helmet>
       <NavbarHeader />
       <Box
         sx={{

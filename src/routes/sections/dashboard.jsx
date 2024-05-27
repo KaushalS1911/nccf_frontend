@@ -5,14 +5,15 @@ import { AuthGuard } from 'src/auth/guard';
 import DashboardLayout from 'src/layouts/dashboard';
 
 import { LoadingScreen } from 'src/components/loading-screen';
-import OneView from 'src/sections/one/view';
-import OrderNewForm from 'src/components/customComponent/Order-new-form';
 
 // ----------------------------------------------------------------------
 
-const IndexPage = lazy(() => import('src/pages/dashboard/one'));
-const PageTwo = lazy(() => import('src/pages/dashboard/two'));
+const IndexPage = lazy(() => import('src/pages/dashboard/basicInformation'));
+const UploadDocument = lazy(() => import('src/pages/dashboard/uploadDocument'));
+const UploadEvidence = lazy(() => import('../../pages/dashboard/uploadEvidence'));
 const Dashboard = lazy(() => import('src/pages/dashboard/dashboard'));
+const OrderNewForm = lazy(() => import('../../pages/dashboard/order'));
+const BasicInformation = lazy(() => import('../../pages/dashboard/basicInformation'));
 const PageThree = lazy(() => import('src/pages/dashboard/three'));
 const PageFour = lazy(() => import('src/pages/dashboard/four'));
 const PageFive = lazy(() => import('src/pages/dashboard/five'));
@@ -35,10 +36,11 @@ export const dashboardRoutes = [
     ),
     children: [
       { element: <Dashboard />, index: true },
-      { path: 'basic-info', element: <OneView /> },
-      { path: 'two', element: <PageTwo /> },
+      { path: 'basic-info', element: <BasicInformation /> },
+      { path: 'upload-document', element: <UploadDocument /> },
+      { path: 'upload-evidence', element: <UploadEvidence /> },
       { path: 'three', element: <PageThree /> },
-      {path: 'orderList',element:<OrderNewForm />},
+      { path: 'place-order', element: <OrderNewForm /> },
       {
         path: 'group',
         children: [
@@ -47,7 +49,6 @@ export const dashboardRoutes = [
           { path: 'six', element: <PageSix /> },
         ],
       },
-      
     ],
   },
 ];

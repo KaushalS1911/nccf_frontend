@@ -21,8 +21,9 @@ export const paths = {
     root: ROOTS.DASHBOARD,
     one: `${ROOTS.DASHBOARD}/one`,
     basicInfo: `${ROOTS.DASHBOARD}/basic-info`,
-    orderList:`${ROOTS.DASHBOARD}/orderList`,
-    two: `${ROOTS.DASHBOARD}/two`,
+    placeOrder: `${ROOTS.DASHBOARD}/place-order`,
+    uploadDocument : `${ROOTS.DASHBOARD}/upload-document`,
+    uploadEvidence : `${ROOTS.DASHBOARD}/upload-evidence`,
     three: `${ROOTS.DASHBOARD}/three`,
     group: {
       root: `${ROOTS.DASHBOARD}/group`,
