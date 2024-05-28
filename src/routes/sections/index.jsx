@@ -1,7 +1,5 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
-// import { PATH_AFTER_LOGIN } from 'src/config-global';
-
 import { mainRoutes } from './main';
 import { authRoutes } from './auth';
 import { dashboardRoutes } from './dashboard';

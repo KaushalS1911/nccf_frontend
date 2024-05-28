@@ -1,14 +1,8 @@
 import React from 'react';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 
-import { useMockedUser } from 'src/hooks/use-mocked-user';
-
-import { SeoIllustration } from 'src/assets/illustrations';
-import { _appAuthors, _appRelated, _appFeatured, _appInvoices, _appInstalled } from 'src/_mock';
 
 import { useSettingsContext } from 'src/components/settings';
 
@@ -18,12 +12,19 @@ import AppWidgetSummary from '../app-widget-summary';
 // ----------------------------------------------------------------------
 
 export default function OverviewAppView() {
-  const { user } = useMockedUser();
 
-  const theme = useTheme(); // Ensure useTheme hook is called here
+  const theme = useTheme();
 
   const settings = useSettingsContext();
 
+
+  const appData = [{
+    "id": "e99f09a7-dd88-49d5-b1c8-1daf80c2d7b1",
+    "invoiceNumber": "INV-1990",
+    "price": 83.74,
+    "category": "Android",
+    "status": "paid"
+  }]
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
       <Grid container spacing={3}>
@@ -44,7 +45,7 @@ export default function OverviewAppView() {
             percent={0.2}
             total={4876}
             chart={{
-              colors: [theme.palette.info.light, theme.palette.info.main], 
+              colors: [theme.palette.info.light, theme.palette.info.main],
               series: [20, 41, 63, 33, 28, 35, 50, 46, 11, 26],
             }}
           />
@@ -64,7 +65,7 @@ export default function OverviewAppView() {
         <Grid xs={12} lg={12}>
           <AppNewInvoice
             title="New Invoice"
-            tableData={_appInvoices}
+            tableData={appData}
             tableLabels={[
               { id: 'id', label: 'Invoice ID' },
               { id: 'category', label: 'Category' },

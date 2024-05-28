@@ -8,21 +8,34 @@ import Drawer from '@mui/material/Drawer';
 import { usePathname } from 'src/routes/hooks';
 
 import { useResponsive } from 'src/hooks/use-responsive';
-import { useMockedUser } from 'src/hooks/use-mocked-user';
 
 import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
 import { NavSectionVertical } from 'src/components/nav-section';
 
 import { NAV } from '../config-layout';
-import NavUpgrade from '../common/nav-upgrade';
 import { useNavData } from './config-navigation';
 import NavToggleButton from '../common/nav-toggle-button';
 
 // ----------------------------------------------------------------------
 
 export default function NavVertical({ openNav, onCloseNav }) {
-  const { user } = useMockedUser();
+  const user = {
+    id: '8864c717-587d-472a-929a-8e5f298024da-0',
+    displayName: 'Jaydon Frankie',
+    email: 'demo@minimals.cc',
+    password: 'demo1234',
+    photoURL: '',
+    phoneNumber: '+40 777666555',
+    country: 'United States',
+    address: '90210 Broadway Blvd',
+    state: 'California',
+    city: 'San Francisco',
+    zipCode: '94116',
+    about: 'Praesent turpis. Phasellus viverra nulla ut metus varius laoreet. Phasellus tempus.',
+    role: 'admin',
+    isPublic: true,
+  };
 
   const pathname = usePathname();
 
@@ -59,7 +72,6 @@ export default function NavVertical({ openNav, onCloseNav }) {
 
       <Box sx={{ flexGrow: 1 }} />
 
-      <NavUpgrade />
     </Scrollbar>
   );
 

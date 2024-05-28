@@ -14,7 +14,6 @@ const UploadEvidence = lazy(() => import('../../pages/dashboard/uploadEvidence')
 const Dashboard = lazy(() => import('src/pages/dashboard/dashboard'));
 const OrderNewForm = lazy(() => import('../../pages/dashboard/order'));
 const BasicInformation = lazy(() => import('../../pages/dashboard/basicInformation'));
-const PageThree = lazy(() => import('src/pages/dashboard/three'));
 const PageFour = lazy(() => import('src/pages/dashboard/four'));
 const PageFive = lazy(() => import('src/pages/dashboard/five'));
 const PageSix = lazy(() => import('src/pages/dashboard/six'));
@@ -39,7 +38,6 @@ export const dashboardRoutes = [
       { path: 'basic-info', element: <BasicInformation /> },
       { path: 'upload-document', element: <UploadDocument /> },
       { path: 'upload-evidence', element: <UploadEvidence /> },
-      { path: 'three', element: <PageThree /> },
       { path: 'place-order', element: <OrderNewForm /> },
       {
         path: 'group',
